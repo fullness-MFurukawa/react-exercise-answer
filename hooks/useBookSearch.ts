@@ -17,6 +17,15 @@ export function useBookSearch() {
     const [searched, setSearched] = useState(false)
 
     const search = async () => {
+
+        // 入力チェック:空(または空白のみ)なら API を呼ばずに案内を出す
+        if (!keyword.trim()) {
+            setError('検索キーワードを入力してください。')
+            setBooks([])
+            setSearched(false) // 「0件」ではなく「未検索」扱いにする
+            return
+        }
+
         setLoading(true)
         setError(null)
         try {
