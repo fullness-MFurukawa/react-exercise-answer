@@ -13,7 +13,7 @@ export function useBookSearch() {
     const [books, setBooks] = useState<Book[]>([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
-    // 一度でも検索を実行したか(初期表示と「0件」を区別するため)
+    // 一度でも検索を実行したか(初期表示と「0件」を区別する
     const [searched, setSearched] = useState(false)
 
     const search = async () => {
