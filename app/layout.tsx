@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { Library, LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Toaster } from '@/components/ui/sonner'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -16,12 +18,14 @@ export default function RootLayout({
       <body className="bg-stone-100 antialiased">
         <div className="mx-auto max-w-5xl p-4 md:p-8">
           <div className="overflow-hidden rounded-2xl border bg-white shadow-sm">
-            {/* 全ページ共通ヘッダー */}
             <header className="flex items-center justify-between bg-slate-800 px-6 py-4 text-white">
-              <div className="flex items-center gap-2">
+              <Link
+                href="/"
+                className="flex items-center gap-2 transition-opacity hover:opacity-80"
+              >
                 <Library className="h-6 w-6" />
                 <span className="text-lg font-semibold">図書管理システム</span>
-              </div>
+              </Link>
               <Button
                 variant="outline"
                 className="border-slate-500 bg-transparent text-white hover:bg-slate-700 hover:text-white"
@@ -30,11 +34,11 @@ export default function RootLayout({
                 ログアウト
               </Button>
             </header>
-
-            {/* 各ページの中身がここに差し込まれる */}
             <main className="p-6 md:p-10">{children}</main>
           </div>
         </div>
+        {/* トーストの表示先。全ページ共通で1つ置く */}
+        <Toaster richColors position="top-center" />
       </body>
     </html>
   )

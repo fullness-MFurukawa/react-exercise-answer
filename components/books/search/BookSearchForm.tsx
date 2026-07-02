@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import Link from 'next/link'
 
 type Props = {
   keyword: string
@@ -26,6 +27,10 @@ export function BookSearchForm({
       />
       <Button onClick={onSearch} disabled={loading}>
         {loading ? '検索中...' : '検索'}
+      </Button>
+       {/* 見た目はボタン、実体は Link(asChild でbutton内のLinkにスタイルを適用) */}
+      <Button variant="outline" asChild>
+        <Link href="/">メニューに戻る</Link>
       </Button>
     </div>
   )

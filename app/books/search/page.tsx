@@ -1,4 +1,3 @@
-// app/books/search/page.tsx
 'use client'
 
 import { useBookSearch } from '@/hooks/useBookSearch'
@@ -7,7 +6,7 @@ import { BookSearchResult } from '@/components/books/search/BookSearchResult'
 
 export default function BookSearchPage() {
   // フックから状態とロジックを取得する
-  const { keyword, setKeyword, books, loading, error, searched, search } =
+  const { keyword, setKeyword, books, loading, searched, search } =
     useBookSearch()
 
   return (
@@ -16,7 +15,7 @@ export default function BookSearchPage() {
       <p className="mt-2 text-muted-foreground">
         書名のキーワードを入力して検索してください。
       </p>
-
+      
       {/* フックの状態をコンポーネントに渡す */}
       <BookSearchForm
         keyword={keyword}
@@ -27,7 +26,6 @@ export default function BookSearchPage() {
       <BookSearchResult
         books={books}
         loading={loading}
-        error={error}
         searched={searched}
       />
     </div>

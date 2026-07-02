@@ -1,41 +1,30 @@
 import type { Book } from '@/models/book'
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
+  Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from '@/components/ui/table'
+import { SearchX } from 'lucide-react'
 
 type Props = {
   books: Book[]
   loading: boolean
-  error: string | null
   searched: boolean
 }
 
-export function BookSearchResult({ books, loading, error, searched }: Props) {
-  // エラー時
-  if (error) {
-    return <p className="mt-6 text-destructive">エラー: {error}</p>
-  }
-
-  // 検索実行後、0件だった場合のメッセージ
+export function BookSearchResult({ books, loading, searched }: Props) {
+  // 検索実行後、0件だった場合のメッセージ(結果に紐づくので画面に残す)
   if (searched && !loading && books.length === 0) {
     return (
-      <p className="mt-6 text-muted-foreground">
-        該当する図書が見つかりませんでした。
-      </p>
+      <div className="mt-10 flex flex-col items-center gap-2 text-muted-foreground">
+        <SearchX className="h-10 w-10" />
+        <p>該当する図書が見つかりませんでした。</p>
+      </div>
     )
   }
 
-  // 結果がなければ何も表示しない(初期表示など)
   if (books.length === 0) {
     return null
   }
 
-  // 検索結果テーブル
   return (
     <Table className="mt-6">
       <TableHeader>
